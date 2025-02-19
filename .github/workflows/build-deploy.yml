@@ -5,10 +5,10 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
-  job-name:
-    permissions:
-      contents: write
   build:
     runs-on: ubuntu-latest
 
@@ -30,9 +30,7 @@ jobs:
           jupyter-book build book/
 
       - name: Deploy to GitHub Pages
-        if: success()
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git remote set-url origin https://x-access-token:${{ secrets.GH_PAT }}@github.com/TestAkun01/jb.git
-          ghp-import -n -p -f book/_build/html
+          ghp-import -n -p -f book/_build/html -b gh-pages
