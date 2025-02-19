@@ -6,6 +6,9 @@ on:
       - main # Ubah sesuai dengan branch utama proyek
 
 jobs:
+  job-name:
+    permissions:
+      contents: write
   build:
     runs-on: ubuntu-latest
 
