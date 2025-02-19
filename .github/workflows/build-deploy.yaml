@@ -1,0 +1,32 @@
+name: Build and Deploy Jupyter Book
+
+on:
+  push:
+    branches:
+      - main # Ubah sesuai dengan branch utama proyek
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Build Jupyter Book
+        run: |
+          jupyter-book build book/
+
+      - name: Deploy to GitHub Pages
+        if: success()
+        run: |
+          ghp-import -n -p -f book/_build/html
