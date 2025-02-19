@@ -3,7 +3,7 @@ name: Build and Deploy Jupyter Book
 on:
   push:
     branches:
-      - main # Ubah sesuai dengan branch utama proyek
+      - main
 
 jobs:
   job-name:
