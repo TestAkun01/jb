@@ -27,10 +27,10 @@ jobs:
 
       - name: Build Jupyter Book
         run: |
-          jupyter-book build book/
+          jupyter-book build .
 
       - name: Deploy to GitHub Pages
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          ghp-import -n -p -f book/_build/html -b gh-pages
+          ghp-import -n -p -f ./_build/html -b gh-pages
